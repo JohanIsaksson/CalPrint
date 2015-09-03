@@ -7,16 +7,27 @@ package scheme;
  * To change this template use File | Settings | File Templates.
  */
 
+import com.fazecast.jSerialComm.SerialPort;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicBorders;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.util.Scanner;
 
 public class GUI extends JFrame {
-    JMenuBar menuBar;
-    JPanel drawArea, left;
+    private JMenuBar menuBar;
+    private JPanel drawArea, left;
+    private JTextField log;
+    private JFrame me;
+
+
+
 
     public GUI(){
         super("Cal-Print");
+	me = this;
+
 
         menuBar = new JMenuBar();
         menuBar.add(new FileMenu());
@@ -25,28 +36,43 @@ public class GUI extends JFrame {
         menuBar.add(new ExportMenu());
 
 
-        left = new JPanel();
-        left.setLocation(0,0);
-        left.setSize(100,600);
-        left.setVisible(true);
-        left.setBorder(new BasicBorders.SplitPaneBorder(Color.white, Color.BLACK));
 
-        drawArea = new JPanel();
-        setLocation(200,0);
-        drawArea.setSize(600,600);
-        drawArea.setVisible(true);
+
+
+
+	/*
+	log = new JTextField(20);
+	log.addActionListener(left);
+	log.setSize(90,100);
+	log.setLocation(5,5);
+	log.setVisible(true);
+
+	*/
+
+	Graph graph1 = new Graph();
+	//Graph graph2 = new Graph();
+
+
+
+
 
 
 
         this.setSize(800, 600);
-        this.setLayout(new GridLayout());
+        this.setLayout(new FlowLayout());
 
+	this.add(graph1);
+	//this.add(graph2);
 
         this.setJMenuBar(menuBar);
-        this.getContentPane().add(left);
-        this.getContentPane().add(drawArea);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);
+
+
+
+
+
+
 
 
 
